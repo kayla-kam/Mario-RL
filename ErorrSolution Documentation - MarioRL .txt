@@ -1,0 +1,51 @@
+Erorr/Solution Documentation:
+
+1. Error:
+C:\Users\Kayla\anaconda3\envs\mariorl\lib\site-packages\gym\utils\passive_env_checker.py:195: UserWarning: WARN: The result returned by `env.reset()` was not a tuple of the form `(obs, info)`, where `obs` is a observation and `info` is a dictionary containing additional information. Actual type: `<class 'numpy.ndarray'>`
+  logger.warn(
+C:\Users\Kayla\anaconda3\envs\mariorl\lib\site-packages\gym\utils\passive_env_checker.py:219: DeprecationWarning: WARN: Core environment is written in old step API which returns one bool instead of two. It is recommended to rewrite the environment with new step API. 
+  logger.deprecation(
+C:\Users\Kayla\anaconda3\envs\mariorl\lib\site-packages\gym\utils\passive_env_checker.py:225: DeprecationWarning: `np.bool8` is a deprecated alias for `np.bool_`.  (Deprecated NumPy 1.24)
+  if not isinstance(done, (bool, np.bool8)):
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+Cell In[3], line 10
+      8     env.reset()
+      9 # Do random actions
+---> 10 state, reward, done, info = env.step(env.action_space.sample())
+     11 # Show the game on the screen
+     12 env.render()
+
+File ~\anaconda3\envs\mariorl\lib\site-packages\nes_py\wrappers\joypad_space.py:74, in JoypadSpace.step(self, action)
+     59 """
+     60 Take a step using the given action.
+     61 
+   (...)
+     71 
+     72 """
+     73 # take the step and record the output
+---> 74 return self.env.step(self._action_map[action])
+
+File ~\anaconda3\envs\mariorl\lib\site-packages\gym\wrappers\time_limit.py:50, in TimeLimit.step(self, action)
+     39 def step(self, action):
+     40     """Steps through the environment and if the number of steps elapsed exceeds ``max_episode_steps`` then truncate.
+     41 
+     42     Args:
+   (...)
+     48 
+     49     """
+---> 50     observation, reward, terminated, truncated, info = self.env.step(action)
+     51     self._elapsed_steps += 1
+     53     if self._elapsed_steps >= self._max_episode_steps:
+
+ValueError: not enough values to unpack (expected 5, got 4)
+
+Solution:
+
+Make sure dependicies and libraries are the right versions for this program. For this project I used (and assumed the tutorial used):
+Python==3.7.16
+gym_super_mario_bros==7.4.0
+nes_py==8.2.1
+gym==0.21.0
+stable-baselines3[extra]==1.6.2
+
